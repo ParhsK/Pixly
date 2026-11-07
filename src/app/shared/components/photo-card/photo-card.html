@@ -1,0 +1,10 @@
+<button type="button" class="card" [class.loaded]="loaded()" [attr.aria-label]="actionLabel()"
+    (click)="selected.emit(photo())">
+    <img [src]="photo().url" [width]="width" [height]="height" alt="" loading="lazy" decoding="async"
+        (load)="loaded.set(true)" />
+    @if (favorite()) {
+    <span class="badge" title="In favorites">
+        <mat-icon aria-hidden="true">favorite</mat-icon>
+    </span>
+    }
+</button>
