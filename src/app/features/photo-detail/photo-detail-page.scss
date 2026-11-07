@@ -1,0 +1,51 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-height: calc(100dvh - var(--app-header-height) - 2 * var(--app-page-padding));
+}
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.remove {
+    --mat-button-filled-container-color: var(--mat-sys-error);
+    --mat-button-filled-label-text-color: var(--mat-sys-on-error);
+}
+
+.note {
+    color: var(--mat-sys-on-surface-variant);
+}
+
+.frame {
+    position: relative;
+    flex: 1;
+    display: grid;
+    place-items: center;
+    margin: 0;
+    min-height: 0;
+
+    app-loader {
+        position: absolute;
+    }
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(100dvh - var(--app-header-height) - 2 * var(--app-page-padding) - 56px);
+    object-fit: contain;
+    border-radius: var(--mat-sys-corner-large);
+    box-shadow: var(--mat-sys-level2);
+    opacity: 0;
+    transition: opacity 240ms ease;
+
+    &.loaded {
+        opacity: 1;
+    }
+}

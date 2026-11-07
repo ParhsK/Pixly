@@ -1,0 +1,23 @@
+<h1 class="visually-hidden">Photo {{ id() }}</h1>
+
+<div class="actions">
+    <a mat-button routerLink="/favorites">
+        <mat-icon>arrow_back</mat-icon>
+        Favorites
+    </a>
+    @if (isFavorite()) {
+    <button mat-flat-button type="button" class="remove" (click)="remove()">
+        <mat-icon>heart_minus</mat-icon>
+        Remove from favorites
+    </button>
+    } @else {
+    <span class="note">This photo isn't in your favorites.</span>
+    }
+</div>
+
+<figure class="frame">
+    @if (!loaded()) {
+    <app-loader label="Loading photo" />
+    }
+    <img [src]="imageUrl()" [class.loaded]="loaded()" alt="Selected photo" (load)="loaded.set(true)" />
+</figure>
