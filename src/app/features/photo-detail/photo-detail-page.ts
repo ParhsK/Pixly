@@ -3,7 +3,7 @@ import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router, RouterLink } from '@angular/router';
-import { FavouritesService } from '../../core/services/favourites.service';
+import { FavoritesService } from '../../core/services/favorites.service';
 import { fullSizePhotoUrl } from '../../core/utils/photo-url';
 import { Loader } from '../../shared/components/loader/loader';
 
@@ -17,7 +17,7 @@ import { Loader } from '../../shared/components/loader/loader';
 export class PhotoDetailPage {
     readonly id = input.required<string>();
 
-    private readonly favorites = inject(FavouritesService);
+    private readonly favorites = inject(FavoritesService);
     private readonly router = inject(Router);
     private readonly snackBar = inject(MatSnackBar);
 

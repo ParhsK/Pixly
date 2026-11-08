@@ -1,4 +1,4 @@
-// Source of thuth for  the favourites list.
+// Source of thuth for  the favorites list.
 
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Photo } from '../models/photo.model';
@@ -16,7 +16,7 @@ function isPhoto(value: unknown): value is Photo {
 }
 
 @Injectable({ providedIn: 'root' })
-export class FavouritesService {
+export class FavoritesService {
     private readonly storage = inject(StorageService);
     private readonly _favorites = signal<readonly Photo[]>(this.restore());
 

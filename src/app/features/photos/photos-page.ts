@@ -2,16 +2,16 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Photo } from '../../core/models/photo.model';
-import { FavouritesService } from '../../core/services/favourites.service';
+import { FavoritesService } from '../../core/services/favorites.service';
 import { Loader } from '../../shared/components/loader/loader';
 import { PhotoGrid } from '../../shared/components/photo-grid/photo-grid';
 import { InfiniteScrollDirective } from '../../shared/directives/infinite-scroll.directive';
 import { PhotoStreamStore } from './photo-stream.store';
 
 @Component({
-    selector: 'app-photos-page',
-    imports: [PhotoGrid, Loader, InfiniteScrollDirective, MatButton],
-    template: `
+  selector: 'app-photos-page',
+  imports: [PhotoGrid, Loader, InfiniteScrollDirective, MatButton],
+  template: `
     <h1 class="visually-hidden">Photos</h1>
     <app-photo-grid
       [photos]="store.photos()"
@@ -38,7 +38,7 @@ import { PhotoStreamStore } from './photo-stream.store';
       <app-loader label="Loading more photos" />
     }
   `,
-    styles: `
+  styles: `
     .sentinel {
       height: 1px;
     }
@@ -50,24 +50,24 @@ import { PhotoStreamStore } from './photo-stream.store';
       color: var(--mat-sys-error);
     }
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotosPage {
-    protected readonly store = inject(PhotoStreamStore);
-    private readonly favorites = inject(FavouritesService);
-    private readonly snackBar = inject(MatSnackBar);
+  protected readonly store = inject(PhotoStreamStore);
+  private readonly favorites = inject(FavoritesService);
+  private readonly snackBar = inject(MatSnackBar);
 
-    /* arrow function instead of method because passing it to a child as [isFavorite]="isFavorite", arrow function keeps `this` pointing at the page*/
-    protected readonly isFavorite = (id: string) => this.favorites.isFavorite(id);
+  /* arrow function instead of method because passing it to a child as [isFavorite]="isFavorite", arrow function keeps `this` pointing at the page*/
+  protected readonly isFavorite = (id: string) => this.favorites.isFavorite(id);
 
-    constructor() {
-        this.store.ensureLoaded();
-    }
+  constructor() {
+    this.store.ensureLoaded();
+  }
 
-    protected addToFavorites(photo: Photo): void {
-        const added = this.favorites.add(photo);
-        this.snackBar.open(added ? 'Added to favorites' : 'Already in favorites', undefined, {
-            duration: 1800,
-        });
-    }
+  protected addToFavorites(photo: Photo): void {
+    const added = this.favorites.add(photo);
+    this.snackBar.open(added ? 'Added to favorites' : 'Already in favorites', undefined, {
+      duration: 1800,
+    });
+  }
 }

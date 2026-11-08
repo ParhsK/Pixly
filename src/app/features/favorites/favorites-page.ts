@@ -2,14 +2,14 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import { Router, RouterLink } from '@angular/router';
 import { Photo } from '../../core/models/photo.model';
-import { FavouritesService } from '../../core/services/favourites.service';
+import { FavoritesService } from '../../core/services/favorites.service';
 import { EmptyState } from '../../shared/components/empty-state/empty-state';
 import { PhotoGrid } from '../../shared/components/photo-grid/photo-grid';
 
 @Component({
-    selector: 'app-favorites-page',
-    imports: [PhotoGrid, EmptyState, MatButton, RouterLink],
-    template: `
+  selector: 'app-favorites-page',
+  imports: [PhotoGrid, EmptyState, MatButton, RouterLink],
+  template: `
     <h1 class="visually-hidden">Favorites</h1>
     @if (favorites.count() > 0) {
       <app-photo-grid
@@ -27,13 +27,13 @@ import { PhotoGrid } from '../../shared/components/photo-grid/photo-grid';
       </app-empty-state>
     }
   `,
-    changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FavoritesPage {
-    protected readonly favorites = inject(FavouritesService);
-    private readonly router = inject(Router);
+  protected readonly favorites = inject(FavoritesService);
+  private readonly router = inject(Router);
 
-    protected open(photo: Photo): void {
-        this.router.navigate(['/photos', photo.id]);
-    }
+  protected open(photo: Photo): void {
+    this.router.navigate(['/photos', photo.id]);
+  }
 }

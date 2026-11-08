@@ -5,7 +5,7 @@ import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { filter, map } from 'rxjs';
-import { FavouritesService } from '../../core/services/favourites.service';
+import { FavoritesService } from '../../core/services/favorites.service';
 
 export type View = 'photos' | 'favorites';
 
@@ -23,7 +23,7 @@ export function viewForUrl(url: string): View {
 })
 export class Header {
     private readonly router = inject(Router);
-    protected readonly favorites = inject(FavouritesService);
+    protected readonly favorites = inject(FavoritesService);
 
     private readonly url = toSignal(
         this.router.events.pipe(
