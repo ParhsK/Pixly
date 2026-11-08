@@ -1,0 +1,25 @@
+<mat-toolbar class="toolbar">
+    <a class="brand" routerLink="/">
+        <mat-icon aria-hidden="true">photo_camera</mat-icon>
+        <span>Pixly</span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+        <a mat-button routerLink="/" class="nav-link" data-testid="nav-photos"
+            [class.active]="activeView() === 'photos'" [attr.aria-current]="activeView() === 'photos' ? 'page' : null">
+            <mat-icon>grid_view</mat-icon>
+            Photos
+        </a>
+        <a mat-button routerLink="/favorites" class="nav-link" data-testid="nav-favorites"
+            [class.active]="activeView() === 'favorites'"
+            [attr.aria-current]="activeView() === 'favorites' ? 'page' : null">
+            <mat-icon>favorite</mat-icon>
+            Favorites
+            @if (favorites.count() > 0) {
+            <span class="count" [attr.aria-label]="favorites.count() + ' saved'">{{
+                favorites.count()
+                }}</span>
+            }
+        </a>
+    </nav>
+</mat-toolbar>
