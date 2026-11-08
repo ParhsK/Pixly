@@ -18,7 +18,7 @@ export class PhotoApiService {
     }
 
     randomLatency(): number {
-        return MIN_LATENCY_MS + Math.floor(Math.random() * (MAX_LATENCY_MS - MIN_LATENCY_MS));
+        return MIN_LATENCY_MS + Math.floor(Math.random() * (MAX_LATENCY_MS - MIN_LATENCY_MS + 1));
     }
 
     private createRandomPhoto(): Photo {
